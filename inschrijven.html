@@ -20,7 +20,6 @@
         <img src="/Title.svg" alt="My Icon" class="w-60 max-w-none object-cover object-center absolute left-10 z-10" />
 
         <div>
-
           <a href="/index.html" class="absolute bottom-[-2.8rem] left-10 mb-0 z-10 rotate-[3deg] hover:cursor-pointer">
             <img src="/Title.svg" alt="My Icon"
               class="w-20 h-20 max-w-none object-cover object-center  hover:saturate-[200%] hover:hue-rotate-[10deg]" />
@@ -30,9 +29,15 @@
             </p>
           </a>
 
-          <div class="scalda-green-gradient p-10 overflow-y-auto flex flex-col space-y-10 mt-8 pt-15 rotate-[-1.4deg]">
-            <div class="rotate-[1.4deg] p-10 flex justify-center">
-              <img src="/qr-code.png" class="w-100" >
+          <div class="scalda-green-gradient p-10 overflow-y-auto flex flex-col space-y-10 mt-8 pt-0 rotate-[-1.4deg] transform-gpu will-change-transform antialiased [backface-visibility:hidden]">
+            <div class="rotate-[1.4deg] p-10 flex flex-col justify-center transform-gpu will-change-transform antialiased [backface-visibility:hidden]">
+              <div class="mt-5 mb-10">
+                <p class="font-scalda text-3xl text-white tracking-wide text-center">Scan het QR-code</p>
+                <p class="font-scalda-alt text-xl text-white tracking-wide text-center">Om in te loggen met <span class="text-scalda-green-300 font-scalda">Intergrip</span> </p>
+              </div>
+              <div class="flex justify-center">
+                <img src="/qr-code.png" class="w-100" >
+              </div>
             </div>
           </div>
         </div>
