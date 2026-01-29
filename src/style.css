@@ -1,5 +1,55 @@
 @import "tailwindcss";
 
-/* @theme {
-    --color-forest: #386641;
-} */
+@font-face {
+  font-family: "HybreaW00-Fat";
+  src: url("/fonts/HybreaW00-Fat.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Adelle_Sans";
+  src: url("/fonts/fonnts.com-Adelle_Sans.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Adelle_Sans-thin";
+  src: url("/fonts/fonnts.com-Adelle_Sans_Thin.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Adelle-Heavy";
+  src: url("/fonts/Adelle-heavy.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+    /* Scalda green */
+    --color-scalda-green-100: #C1D133;
+    --color-scalda-green-200: #93BD2B;
+    --color-scalda-green-300: #00833D;
+
+    /* Scalda yellow */
+    --color-scalda-yellow-100: #FFC732;
+    --color-scalda-yellow-200: #FDBE31;
+    --color-scalda-yellow-300: #EF8C28;
+
+    --font-scalda: "HybreaW00-Fat", sans-serif;
+    --font-scalda-alt: "Adelle_Sans", sans-serif;
+    --font-scalda-alt-thin: "Adelle_Sans-thin", sans-serif;
+    --font-scalda-alt-heavy: "Adelle-Heavy", sans-serif;
+}
+
+.scalda-yellow-gradient{
+    background: linear-gradient(114.586deg, #FFC732 0%, #FDBE31 23%, #FDBE31 33%, #EF8C28 93%);
+}
+
+.scalda-green-gradient{
+    background: linear-gradient(-90.355deg, #93BD2B 0%, #C1D133 74%);
+}
