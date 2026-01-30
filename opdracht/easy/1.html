@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/style.css" />
+    <title>opendag-app</title>
+</head>
+
+<body class="scalda-yellow-gradient">
+    <img src="/Decoration2.png" alt="My Icon" class="w-40 max-w-none object-cover object-center fixed right-25 top-0" />
+    <div class="relative mb-25">
+        <div class="p-5 space-y-4 w-full justify-center items-center flex flex-col pt-25">
+            <div class="w-250 relative flex-none">
+                <p class="font-scalda text-stone-50 rotate-[-5.93deg] z-20 absolute left-23 top-5 text-2xl">Opdracht #1
+                </p>
+                <img src="/Title.svg" alt="My Icon"
+                    class="w-60 max-w-none object-cover object-center absolute left-10 z-10" />
+
+                <div>
+                    <a href="/inschrijven.html"
+                        class="absolute bottom-[-1rem] right-5 mb-0 z-10 rotate-[3deg] hover:cursor-pointer">
+                        <img src="/Title.svg" alt="My Icon"
+                            class="w-60 max-w-none object-cover object-center  hover:saturate-[200%] hover:hue-rotate-[10deg]" />
+                        <p
+                            class="font-scalda text-stone-50 rotate-[-4.93deg] z-20 absolute left-6 top-5 text-2xl pointer-events-none select-none">
+                            Wil Inschrijven</p>
+                    </a>
+
+                    <a id="skip-button" href="/opdracht/easy/2.html"
+                        class="absolute -bottom-5 right-70 mb-0 z-10 rotate-[6deg] hover:cursor-pointer">
+                        <img src="/Title.svg" alt="My Icon"
+                            class="w-50 h-15 max-w-none object-cover object-center  hover:saturate-[200%] hover:hue-rotate-[10deg]" />
+                        <p
+                            class="font-scalda text-stone-50 rotate-[-4.93deg] z-20 absolute left-8 top-4 text-2xl pointer-events-none select-none">
+                            Sla dit over</p>
+                    </a>
+
+                    <a id="hint-button"
+                        class="absolute left-35 -bottom-10 mb-0 z-10 rotate-[3deg] hover:cursor-pointer">
+                        <img src="/Title.svg" alt="My Icon"
+                            class="w-35 h-20 max-w-none object-cover object-center  hover:saturate-[200%] hover:hue-rotate-[10deg]" />
+                        <p
+                            class="font-scalda text-stone-50 rotate-[-4.93deg] z-20 absolute left-6 top-5 text-4xl pointer-events-none select-none">
+                            Hint!</p>
+                    </a>
+
+                    <a href="/intro/3.html"
+                        class="absolute bottom-[-2.8rem] left-10 mb-0 z-10 rotate-[3deg] hover:cursor-pointer">
+                        <img src="/Title.svg" alt="My Icon"
+                            class="w-20 h-20 max-w-none object-cover object-center  hover:saturate-[200%] hover:hue-rotate-[10deg]" />
+                        <p
+                            class="font-scalda text-stone-50 rotate-[-2.93deg] z-20 absolute left-7 top-5 text-5xl pointer-events-none select-none">
+                            &lt;</p>
+                    </a>
+
+                    <a id="next-button"
+                        class="absolute bottom-[-2.8rem] left-35 mb-0 z-10 rotate-[5deg] hover:cursor-pointer">
+                        <img src="/Title.svg" alt="My Icon"
+                            class="w-20 h-20 max-w-none object-cover object-center  hover:saturate-[200%] hover:hue-rotate-[10deg]" />
+                        <p
+                            class="font-scalda text-stone-50 rotate-[-4.93deg] z-20 absolute left-7 top-5 text-5xl pointer-events-none select-none">
+                            &gt;</p>
+                    </a>
+
+                    <div
+                        class="scalda-green-gradient p-10 overflow-y-auto flex flex-col space-y-10 mt-8 pt-15 rotate-[-1.4deg]">
+                        <div class="rotate-[1.4deg]">
+                            <p>Eerste opdracht gaat over...</p>
+                            <div class="h-150 w-full relative">
+                                <a id="reset-code"
+                                    class="absolute -top-10 -right-3 mb-0 z-10 rotate-[3deg] hover:cursor-pointer">
+                                    <img src="/Title.svg" alt="My Icon"
+                                        class="w-20 h-20 max-w-none object-cover object-center hue-rotate-[10deg] saturate-[200%] hover:saturate-[150%] hover:hue-rotate-[20deg]" />
+                                    <p
+                                        class="font-scalda text-stone-50 rotate-[-2.93deg] z-20 absolute left-4 top-5 text-5xl pointer-events-none select-none">
+                                        &#10227;</p>
+                                </a>
+                                <div id="blocklyDiv" class="h-full w-full">
+
+                                </div>
+                            </div>
+                            <p>Zodra je aanpassingen maakt, kun je ze benden zien.</p>
+                            <div class="w-full h-150 relative">
+                                <a id="execute-code"
+                                    class="absolute top-13 -right-5 mb-0 z-10 rotate-[3deg] hover:cursor-pointer">
+                                    <img src="/Title.svg" alt="My Icon"
+                                        class="w-20 h-20 max-w-none object-cover object-center hue-rotate-[10deg] saturate-[200%] hover:saturate-[150%] hover:hue-rotate-[20deg]" />
+                                    <p
+                                        class="font-scalda text-stone-50 rotate-[-2.93deg] z-20 absolute left-5 top-4 text-5xl pointer-events-none select-none">
+                                        &#9654;</p>
+                                </a>
+                                <img src="/Title.svg" alt="My Icon"
+                                    class="w-full h-144 max-w-none object-cover object-center rotate-x-[4deg] rotate-y-[15deg] rotate-z-[4deg] z-10" />
+                                <div class="absolute inset-x-10 inset-y-28 bg-white">
+                                    <iframe id="previewFrame" class="w-full h-full">
+
+                                    </iframe>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="/src/assignments/assignment-1-easy.ts"></script>
+</body>
+
+</html>
