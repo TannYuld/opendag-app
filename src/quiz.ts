@@ -112,7 +112,7 @@ function showQuestion(): void {
     const btn = document.createElement("button");
     btn.textContent = answer.text;
     btn.className =
-      " p-2 hover:bg-gray-200 transition text-left hover:cursor-pointer scalda-green-gradient-reverse text-white font-scalda-alt";
+      "p-2 hover:bg-gray-200 transition text-left hover:cursor-pointer scalda-green-gradient-reverse text-white font-scalda-alt";
 
     btn.addEventListener("click", () => selectAnswer(answer.correct));
     answersEl.appendChild(btn);
@@ -130,14 +130,14 @@ function selectAnswer(correct: boolean): void {
     resultEl.textContent = "✅ Goed antwoord!";
     score++;
   } else {
-    resultEl.textContent = "❌ Helaas, fout antwoord.";
+    resultEl.textContent = "❌ Helaas, fout antwoord :(";
   }
 
   nextBtn.classList.remove("hidden");
 }
 
 function showResult(): void {
-  questionEl.textContent = "Quiz afgerond!";
+  questionEl.textContent = "Quiz afgerond, Goed gedaan!";
   answersEl.innerHTML = "";
   resultEl.textContent = `Je score: ${score} / ${questions.length}`;
   nextBtn.classList.add("hidden");
