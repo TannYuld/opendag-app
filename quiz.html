@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/style.css" />
+    <title>Software Development Quiz</title>
+  </head>
+  <body class="bg-zinc-900 text-white min-h-screen flex justify-center items-center">
+    <div class="bg-white text-black rounded-xl p-6 w-full max-w-xl space-y-6">
+      <h1 class="text-3xl font-bold text-center text-emerald-700">
+        Software Development Quiz
+      </h1>
+
+      <p id="question" class="font-semibold text-lg"></p>
+      <div id="answers" class="flex flex-col space-y-3"></div>
+
+      <p id="result" class="font-bold text-center"></p>
+
+      <button
+        id="nextBtn"
+        class="hidden bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg px-4 py-2 w-full"
+      >
+        Volgende vraag
+      </button>
+       <a href="index.html" class="bg-emerald-700 text-white rounded-lg p-3 hover:bg-emerald-600">Terug naar Introductie</a>
+    </div>
+
+    <script type="module" src="/src/quiz.ts"></script>
+  </body>
+</html>
