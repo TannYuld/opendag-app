@@ -2,102 +2,181 @@ import './style.css'
 import * as Blockly from 'blockly';
 import { htmlGenerator, introPageToolbox as toolbox } from './toolbox';
 
-const nextButton = document.getElementById('nextButton');
-let canProceed = false;
+export class ObservableBool {
+	private callback: (newState: boolean) => void;
+	private state: boolean;
 
-function setCanProceed(value: boolean) {
-  canProceed = value;
-  if (canProceed) {
-    nextButton?.classList.add('bg-green-600 text-black hover:cursor-pointer');
-    nextButton?.classList.remove('bg-gray-900 text-white hover:cursor-not-allowed');
-  } else {
-    nextButton?.classList.add('bg-gray-900 text-white hover:cursor-not-allowed');
-    nextButton?.classList.remove('bg-green-600 text-black hover:cursor-pointer');
-  }
+	public constructor(callBack: (newState: boolean) => void, initialState?: boolean) {
+		this.callback = callBack;
+		this.state = initialState ?? false;
+	}
+
+	public setState(newState: boolean) {
+		this.state = newState;
+		this.callback(newState);
+	}
+
+	public getState(): boolean {
+		return this.state;
+	}
 }
 
+const darkTheme = Blockly.Theme.defineTheme('dark-mode', {
+	base: Blockly.Themes.Classic,
+	name: "dark-mode",
+	componentStyles: {
+		workspaceBackgroundColour: '#1e1e2e',
 
+		toolboxBackgroundColour: '#11111b',
+		toolboxForegroundColour: '#ffffff',
 
-const myDarkTheme = Blockly.Theme.defineTheme('dark-mode', {
-  base: Blockly.Themes.Classic,
-  name: "dark-mode", // Start with the standard look
-  componentStyles: {
-    // WORKSPACE BACKGROUND
-    workspaceBackgroundColour: '#1e1e2e', // Dark blue-grey
+		flyoutBackgroundColour: '#252525',
+		flyoutOpacity: 0.8,
 
-    // TOOLBOX (MENU) BACKGROUND
-    toolboxBackgroundColour: '#11111b',   // Very dark
-    toolboxForegroundColour: '#ffffff',   // Text color
-
-    // FLYOUT (The drawer that opens when you click a category)
-    flyoutBackgroundColour: '#252525',
-    flyoutOpacity: 0.8,
-
-    // SCROLLBARS
-    scrollbarColour: '#f5289100',
-    scrollbarOpacity: 1
-  },
-  fontStyle: {
-    family: '"Segoe UI", sans-serif', // Change font
-    weight: 'bold',
-    size: 12
-  }
+		scrollbarColour: '#f5289100',
+		scrollbarOpacity: 1
+	},
+	fontStyle: {
+		family: '"Segoe UI", sans-serif',
+		weight: 'bold',
+		size: 12
+	}
 });
 
-// 2. Apply it when injecting
-const workspace = Blockly.inject('blocklyDiv', {
-  toolbox: toolbox,
-  theme: myDarkTheme, // <--- Apply your theme here
-  renderer: 'zelos',
-  grid: {
-    spacing: 20,
-    length: 3,
-    colour: '#ccc', // Grid dots color
-    snap: true
-  }
-});
+export function createBlocklyInstance(): Blockly.WorkspaceSvg {
+	return Blockly.inject('blocklyDiv', {
+		toolbox: toolbox,
+		theme: darkTheme,
+		renderer: 'zelos',
+		grid: {
+			spacing: 20,
+			length: 3,
+			colour: '#ccc',
+			snap: true
+		},
+		zoom: {
+			controls: true,
+			wheel: true,
+			startScale: 1.0,
+			maxScale: 3,
+			minScale: 0.3,
+			scaleSpeed: 1.05,
+			pinch: true
+		}
+	});
+}
 
-function updatePreview() {
+export function isPreviewMetHtmlConditions(workspace: Blockly.Workspace, htmlDoc: string): boolean {
+	const innerHTML = htmlGenerator.workspaceToCode(workspace);
+	return htmlDoc == innerHTML;
+}
 
-//   console.log("Generator Keys:", Object.keys(htmlGenerator));
-// console.log("Button Function:", htmlGenerator['html_button']);
-  // 1. Generate the code from blocks
-  const innerHTML = htmlGenerator.workspaceToCode(workspace);
+export function updatePreview(workspace: Blockly.Workspace) {
+	const innerHTML = htmlGenerator.workspaceToCode(workspace);
 
-  // 2. Wrap it in a full HTML structure
-  const fullHTML = `
+	const fullHTML = `
     <!DOCTYPE html>
     <html>
-      <head>
-        <style>
-          body { font-family: sans-serif; padding: 20px; }
-          /* Optional: Add basic resets or defaults here */
-        </style>
-      </head>
-      <body>
-        ${innerHTML}
-      </body>
+      	<head>
+			<style>
+				body { font-family: sans-serif; padding: 20px; }
+				button {
+					border-radius: 15px;
+					border: 2px solid #1C6EA4;
+					transition: filter 0.2s ease;
+				}
+				button:hover {
+					cursor: pointer;
+				}	
+				button:hover {
+					filter: brightness(1.1); /* Increases brightness by 10% */
+				}
+				button:active {
+					filter: brightness(0.9);
+				}
+			</style>
+      	</head>
+      	<body>
+        	${innerHTML}
+      	</body>
     </html>
   `;
 
-  // 3. Get the iframe
-  const iframe = document.getElementById('previewFrame') as HTMLIFrameElement;
-  
-  // 4. Set the srcdoc attribute (Modern & Fast)
-  if (iframe) {
-    iframe.srcdoc = fullHTML;
-  }
-  
-  console.log("Generated HTML:", fullHTML);
+	const iframe = document.getElementById('previewFrame') as HTMLIFrameElement;
+
+	if (iframe) {
+		iframe.srcdoc = fullHTML;
+	}
 }
 
-workspace.addChangeListener(updatePreview);
+export function initializeAssignmentView(workspaceLocalStorageEntryKey: string, assignmentSolvedStatusEntryKey: string, targetHtml: string) {
+	const executeButton = document.getElementById("execute-code") as HTMLElement;
+	const resetButton = document.getElementById("reset-code") as HTMLElement;
+	const hintButton = document.getElementById("hint-button") as HTMLElement;
+	const nextButton = document.getElementById("next-button") as HTMLElement;
+	const skipButton = document.getElementById("skip-button") as HTMLElement;
 
-// // 3. Optional: Real-time Code Generation (Log to console)
-// import { javascriptGenerator } from 'blockly/javascript';
+	const savedWorkspaceData = localStorage.getItem(workspaceLocalStorageEntryKey);
+	const storedWorkspace: Blockly.WorkspaceSvg | null = savedWorkspaceData ? JSON.parse(savedWorkspaceData) : null;
+	const initialState = localStorage.getItem(assignmentSolvedStatusEntryKey) as (boolean | null);
 
-// workspace.addChangeListener(() => {
-//   const code = javascriptGenerator.workspaceToCode(workspace);
-//   console.log("Generated Code:\n", code);
-// });
+	const workspace = createBlocklyInstance();
+	const canProceed = new ObservableBool((newState) => {
+		if (newState) {
+			assignmentSolved();
+		}
+	}, initialState ?? false);
 
+	if (storedWorkspace) {
+		Blockly.serialization.workspaces.load(storedWorkspace, workspace);
+		executeCode();
+	}
+
+	if (canProceed.getState()) {
+		skipButton.hide();
+		hintButton.hide();
+	} else {
+		nextButton.hide();
+		skipButton.hide();
+	}
+
+	function assignmentSolved() {
+		skipButton.hide();
+		hintButton.hide();
+		nextButton.show();
+		localStorage.setItem(assignmentSolvedStatusEntryKey, "true");
+	}
+
+	function getHint() {
+		hintButton.hide();
+		skipButton.show();
+	}
+
+	function executeCode() {
+		updatePreview(workspace);
+		const state = Blockly.serialization.workspaces.save(workspace);
+		localStorage.setItem(workspaceLocalStorageEntryKey, JSON.stringify(state));
+
+		if (isPreviewMetHtmlConditions(workspace, targetHtml)) {
+			canProceed.setState(true);
+		}
+	}
+
+	function resetCode() {
+		workspace.clear();
+		updatePreview(workspace);
+		localStorage.removeItem(workspaceLocalStorageEntryKey);
+	}
+
+	executeButton.onclick = executeCode;
+	resetButton.onclick = resetCode;
+	hintButton.onclick = getHint;
+}
+
+HTMLElement.prototype.show = function () {
+	this.classList.remove("hidden");
+};
+
+HTMLElement.prototype.hide = function () {
+	this.classList.add("hidden");
+};
