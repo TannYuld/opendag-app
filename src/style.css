@@ -53,3 +53,7 @@
 .scalda-green-gradient{
     background: linear-gradient(-90.355deg, #93BD2B 0%, #C1D133 74%);
 }
+
+.scalda-green-gradient-reverse{
+    background: linear-gradient(90.355deg, #93BD2B 0%, #C1D133 74%);
+}

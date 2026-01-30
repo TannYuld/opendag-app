@@ -109,6 +109,10 @@ export function updatePreview(workspace: Blockly.Workspace) {
 	}
 }
 
+export function randomInt(min: number, max: number): number {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 export function initializeAssignmentView(workspaceLocalStorageEntryKey: string, assignmentSolvedStatusEntryKey: string, targetHtml: string) {
 	const executeButton = document.getElementById("execute-code") as HTMLElement;
 	const resetButton = document.getElementById("reset-code") as HTMLElement;
@@ -180,3 +184,4 @@ HTMLElement.prototype.show = function () {
 HTMLElement.prototype.hide = function () {
 	this.classList.add("hidden");
 };
+

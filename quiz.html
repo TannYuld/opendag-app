@@ -1,31 +1,46 @@
 <!doctype html>
 <html lang="nl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/src/style.css" />
-    <title>Software Development Quiz</title>
-  </head>
-  <body class="bg-zinc-900 text-white min-h-screen flex justify-center items-center">
-    <div class="bg-white text-black rounded-xl p-6 w-full max-w-xl space-y-6">
-      <h1 class="text-3xl font-bold text-center text-emerald-700">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/src/style.css" />
+  <title>Software Development Quiz</title>
+</head>
+
+<body class="scalda-yellow-gradient text-white min-h-screen flex justify-center items-center">
+  <img src="/Decoration2.png" alt="My Icon"
+    class="w-40 max-w-none object-cover object-center fixed right-25 top-0 z-10" />
+   
+  <div class="bg-white text-black p-15 w-full max-w-xl space-y-6 rotate-[-1.4deg]">
+     <p class="font-scalda text-stone-50 rotate-[-3.93deg] z-20 absolute left-3.5 -top-4 text-2xl">Introductie</p>
+     <img src="/Title.svg" alt="My Icon" class="w-60 max-w-none object-cover object-center absolute -top-10 -left-10 z-10" />
+    <div class="rotate-[1.4deg] space-y-7">
+      <h1 class="text-3xl font-bold text-center text-emerald-700 font-scalda tracking-wide">
         Software Development Quiz
       </h1>
 
-      <p id="question" class="font-semibold text-lg"></p>
+      <p id="question" class="font-scalda-alt text-lg"></p>
       <div id="answers" class="flex flex-col space-y-3"></div>
 
       <p id="result" class="font-bold text-center"></p>
 
-      <button
-        id="nextBtn"
-        class="hidden bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg px-4 py-2 w-full"
-      >
-        Volgende vraag
-      </button>
-       <a href="index.html" class="bg-emerald-700 text-white rounded-lg p-3 hover:bg-emerald-600">Terug naar Introductie</a>
+      <a id="nextBtn" class=" hidden absolute -bottom-15 right-30 mb-0 z-10 rotate-[5deg] hover:cursor-pointer">
+            <img src="/Title.svg" alt="My Icon"
+              class="w-50 max-w-none object-cover object-center  hover:saturate-[200%] hover:hue-rotate-[10deg]" />
+              <p class="font-scalda text-stone-50 rotate-[-4.93deg] z-20 absolute left-9 top-4 text-2xl pointer-events-none select-none">Volgende</p>
+      </a>
     </div>
+    <a href="/intro/3.html" class="absolute bottom-[-2.8rem] left-10 mb-0 z-10 rotate-[3deg] hover:cursor-pointer">
+      <img src="/Title.svg" alt="My Icon"
+        class="w-20 h-20 max-w-none object-cover object-center  hover:saturate-[200%] hover:hue-rotate-[10deg]" />
+      <p
+        class="font-scalda text-stone-50 rotate-[-2.93deg] z-20 absolute left-7 top-5 text-5xl pointer-events-none select-none">
+        &lt;</p>
+    </a>
+  </div>
 
-    <script type="module" src="/src/quiz.ts"></script>
-  </body>
+  <script type="module" src="/src/quiz.ts"></script>
+</body>
+
 </html>
