@@ -21,7 +21,7 @@ const questions: Question[] = [
     question: "Wat doet een Software Developer eigenlijk?",
     answers: [
       { text: "Computers repareren", correct: false },
-      { text: "Programma’s en apps bedenken en bouwen", correct: true },
+      { text: "Programma's en apps bedenken en bouwen", correct: true },
       { text: "Internet sneller maken", correct: false },
       { text: "Alleen spelletjes spelen", correct: false },
     ],
