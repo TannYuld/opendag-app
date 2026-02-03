@@ -47,7 +47,17 @@
 }
 
 .scalda-yellow-gradient{
-    background: linear-gradient(114.586deg, #FFC732 0%, #FDBE31 23%, #FDBE31 33%, #EF8C28 93%);
+    background: linear-gradient(114.586deg, #FFC732 0%, #FDBE31 23%, #FDBE31 33%, #EF8C28 93%),
+    linear-gradient(
+      294.586deg,
+      #FFC732 0%,
+      #FDBE31 23%,
+      #FDBE31 33%,
+      #EF8C28 93%
+    );
+    background-repeat: repeat-y;
+    background-size: 100% 200vh;
+    background-attachment: scroll;
 }
 
 .scalda-green-gradient{
@@ -56,4 +66,9 @@
 
 .scalda-green-gradient-reverse{
     background: linear-gradient(90.355deg, #93BD2B 0%, #C1D133 74%);
+}
+
+html,
+body {
+  overscroll-behavior: none;
 }
