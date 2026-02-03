@@ -54,9 +54,23 @@
       #FDBE31 23%,
       #FDBE31 33%,
       #EF8C28 93%
+    ),
+       linear-gradient(
+      114.586deg,
+      #FFC732 0%,
+      #FDBE31 23%,
+      #FDBE31 33%,
+      #EF8C28 93%
+    ),
+      linear-gradient(
+      294.586deg,
+      #FFC732 0%,
+      #FDBE31 23%,
+      #FDBE31 33%,
+      #EF8C28 93%
     );
     background-repeat: repeat-y;
-    background-size: 100% 200vh;
+    background-size: 100% 300vh;
     background-attachment: scroll;
 }
 
